@@ -1,8 +1,8 @@
 /*
- * http://www.paulirish.com/2012/box-sizing-border-box-ftw/
- * https://css-tricks.com/international-box-sizing-awareness-day/
- * Do not modify these two selectors, please
- */
+* http://www.paulirish.com/2012/box-sizing-border-box-ftw/
+* https://css-tricks.com/international-box-sizing-awareness-day/
+* Do not modify these two selectors, please
+*/
 html {
   box-sizing: border-box;
 }
@@ -11,15 +11,90 @@ html {
 }
 
 /*
- * Global layout stuff
- */
+* Global layout stuff
+*/
 
 body {
   margin: 0;
   color: #244751;
   background-color: #eee;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+h2 {
+  margin: 0;
 }
 
 /*
- * Additional CSS can be defined below or in other CSS files, as per instructions
- */
+* Additional CSS can be defined below or in other CSS files, as per instructions
+*/
+
+main {
+  width: 450px;
+  margin: auto;
+  background-color: white;
+  position: relative;
+  top: 80px;
+  padding: 20px;
+  /* height: 100vh; */
+  z-index: 0;
+}
+
+.tweet {
+  background-color: white;
+  padding: 0px;
+  border-radius: 5px;
+  margin: 2em;
+  overflow: auto;
+  border: 0.5px solid lightgrey;
+  opacity: .8;
+}
+
+.tweet:hover {
+  border: 0.5px solid grey;
+  opacity: 1;
+}
+
+.tweet header {
+  background-color: #eee;
+  margin: 0;
+  padding: 10px;
+  line-height: 0;
+  overflow: auto;
+}
+
+.tweet header img {
+  width: 60px;
+  flex: 1;
+  float: left;
+  border-radius: 5px;
+}
+
+.tweet header .username {
+  color: #244751;
+  font-weight: 700;
+  font-size: 1.3rem;
+  float: left;
+  margin: 18px 10px;
+}
+
+.tweet header .userid {
+  float: right;
+  color: grey;
+  opacity: .5;
+  font-size: .8rem;
+}
+
+.tweet-body {
+  padding: 30px 10px;
+  border-bottom: 0.5px solid #eee;
+}
+
+.tweet footer {
+  padding: 10px;
+  font-size: 0.8rem;
+}
+
+.tweet footer p {
+  margin: 0;
+}
