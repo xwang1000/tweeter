@@ -30,15 +30,22 @@ $('#tweet-composer').on('submit', function(event) {
   event.preventDefault()
   const inputText = this.text.value
 
+  // Hide previous error message before submission
+  $('#error-message').hide('fast')
+
   // Error checking
   if (inputText.length === 0 || '') {
-    alert('Empty tweet: please say something.')
+    showComposerError({
+      header: 'Empty tweet:', 
+      body: 'please type something.'})
     return
   } else if (inputText.length > 140) {
-    alert('Your tweet is too long. Please keep it less than 140 characters.')
+    showComposerError({
+      header: 'Tweet too long:', 
+      body: 'less than 140 characters please.'})
     return
   }
-
+  
   // All clear, go post!
   const inputSerial = $(this).serialize()
   
@@ -56,7 +63,7 @@ const loadTweets = () => {
 
 const resetComposer = () => {
   $('#tweet-composer-input').val('')
-  $('.counter').html(140) 
+  $('.counter').html(140)
 }
 
 // Escape unsafe html
@@ -66,6 +73,20 @@ const escapeHtml = str => {
   return div.innerHTML;
 }
 
-loadTweets()
+// show error message 
+const showComposerError = ({header, body}) => {
+  console.log(header, body)
+  $('.error-message-header').text(header)
+  $('.error-message-body').text(body)
+  $('#error-message').slideToggle(400)
+}
 
+loadTweets()
+$('.new-tweet').toggle()
+$('#error-message').toggle()
+// Nav bar compose button toggle
+$('.compose-toggle-button').on('click', () => {
+  $('.new-tweet').slideToggle('fast')
+  $('#tweet-composer-input').focus()
+})
 })

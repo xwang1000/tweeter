@@ -1,7 +1,7 @@
 textarea {
   padding: 5px;
   display: block;
-  margin: 10px auto;
+  margin: 0 auto 10px auto;
   width: 100%;
 }
 
@@ -22,4 +22,18 @@ input {
   font-style: italic;
   text-align: right;
   float: right;
+}
+
+#error-message {
+  background-color: rgb(255,224,224);
+  color: red;
+  padding: 5px;
+}
+
+.error-message-header {
+  font-weight: 700;
+}
+
+.error-message-body {
+  font-weight: 300;
 }
