@@ -12,7 +12,7 @@ $(() => {
         ${escapeHtml(tweet.content.text)}
       </div>
       <footer>
-        <p>${new Date(tweet.created_at)}</p>
+        <p>${getDisplayTime(new Date(tweet.created_at))}</p>
       </footer>
     `)
     return $tweet
@@ -45,7 +45,7 @@ $('#tweet-composer').on('submit', function(event) {
       body: 'less than 140 characters please.'})
     return
   }
-  
+
   // All clear, go post!
   const inputSerial = $(this).serialize()
   
@@ -79,6 +79,55 @@ const showComposerError = ({header, body}) => {
   $('.error-message-header').text(header)
   $('.error-message-body').text(body)
   $('#error-message').slideToggle(400)
+}
+
+const getDisplayTime = dateObj => {
+  const today = new Date(Date.now())
+  const yearDiff = today.getFullYear() - dateObj.getFullYear()
+  const monthDiff = today.getMonth() - dateObj.getMonth()
+  const dateDiff = today.getDate() - dateObj.getDate()
+  const hourDiff = today.getHours() - dateObj.getHours()
+  const minuteDiff = today.getMinutes() - dateObj.getMinutes()
+  const secondDiff = today.getSeconds() - dateObj.getSeconds()
+  if (yearDiff > 1) {
+    return `${yearDiff} years ago`
+  } else if (yearDiff === 1) {
+    return `1 year ago`
+  } else {
+    if (monthDiff > 1) {
+      return `${monthDiff} months ago`
+    } else if (monthDiff === 1) {
+      return '1 month ago'
+    }
+  }
+
+  if (dateDiff > 1) {
+    return `${dateDiff} days ago`
+  } else if (dateDiff === 1) {
+    return '1 day ago'
+  }
+
+  if (hourDiff > 1) {
+    return `${hourDiff} hours ago`
+  } else if (hourDiff === 1) {
+    return '1 hour ago'
+  }
+
+  if (minuteDiff > 1) {
+    return `${minuteDiff} minutes ago`
+  } else if (minuteDiff === 1) {
+    return '1 minute ago'
+  }
+
+  if (secondDiff > 1) {
+    return `${secondDiff} seconds ago`
+  } else if (secondDiff === 1) {
+    return '1 second ago'
+  }
+
+  return 'this month'
+
+
 }
 
 loadTweets()

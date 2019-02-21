@@ -46,12 +46,12 @@ main {
   border-radius: 5px;
   margin: 2em;
   overflow: auto;
-  border: 0.5px solid lightgrey;
+  border: 0.5px solid #eee;
   opacity: .8;
 }
 
 .tweet:hover {
-  border: 0.5px solid grey;
+  border: 0.5px solid lightgrey;
   opacity: 1;
 }
 
@@ -86,7 +86,7 @@ main {
 }
 
 .tweet-body {
-  padding: 30px 10px;
+  padding: 20px 10px 30px 10px;
   border-bottom: 0.5px solid #eee;
 }
 
