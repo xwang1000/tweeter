@@ -1,0 +1,25 @@
+textarea {
+  padding: 5px;
+  display: block;
+  margin: 10px auto;
+  width: 100%;
+}
+
+input {
+  float: left;
+}
+
+.new-tweet {
+  background-color: #eee;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 2em;
+  overflow: auto;
+  border: 0.5px solid lightgrey;
+}
+
+.counter {
+  font-style: italic;
+  text-align: right;
+  float: right;
+}

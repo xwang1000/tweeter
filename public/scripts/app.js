@@ -25,22 +25,38 @@ const renderTweets = tweets => {
   });
 }
 
-// Form submission using ajax
+// New tweet submission handler
 $('#tweet-composer').on('submit', function(event) {
   event.preventDefault()
-  const input = $(this).serialize()
+  const inputText = this.text.value
+
+  // Error checking
+  if (inputText.length === 0 || '') {
+    alert('Empty tweet: please say something.')
+    return
+  } else if (inputText.length > 140) {
+    alert('Your tweet is too long. Please keep it less than 140 characters.')
+    return
+  }
+
+  // All clear, go post!
+  const inputSerial = $(this).serialize()
   
-  // Needs refactor
-  $.post('/tweets', input, () => {
+  $.post('/tweets', inputSerial, () => {
     loadTweets()
-  })
+    resetComposer()
+  })  
 })
 
 const loadTweets = () => {
   $.get('/tweets', (tweets) => {    
-    console.log(tweets)
     renderTweets(tweets)
   })
+}
+
+const resetComposer = () => {
+  $('#tweet-composer-input').val('')
+  $('.counter').html(140) 
 }
 
 loadTweets()
