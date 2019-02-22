@@ -19,6 +19,14 @@ input {
 }
 
 .counter {
+  color: inherit;
+  font-style: italic;
+  text-align: right;
+  float: right;
+}
+
+.counter-error {
+  color: red;
   font-style: italic;
   text-align: right;
   float: right;

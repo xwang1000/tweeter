@@ -22,9 +22,7 @@
     <script type="text/javascript" src="/scripts/app.js"></script>
     <script type="text/javascript" src="/scripts/composer-char-counter.js"></script>
   </head>
-
   <body>
-
     <!-- Top nav bar (fixed) -->
     <nav id="nav-bar">
       <img class="logo" src="/images/bird.png" width="80px" height="80px">
@@ -34,13 +32,12 @@
 
     <!-- Page-specific (main) content here -->
     <main class="container">
-
       <section class="new-tweet">
         <h2>Compose Tweet</h2>
         <hr>
         <div id="error-message">
-          <span class="error-message-header">Error message:</span>
-          <span class="error-message-body">yada yada</span>
+          <span class="error-message-header"></span>
+          <span class="error-message-body"></span>
         </div>
         <form id="tweet-composer">
           <textarea id="tweet-composer-input" name="text" placeholder="What are you humming about?"></textarea>
@@ -48,9 +45,7 @@
           <span class="counter">140</span>
         </form>
       </section>
-
       <section id="tweets-container"></section>
     </main>
-
   </body>
 </html>

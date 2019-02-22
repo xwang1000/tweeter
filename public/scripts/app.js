@@ -1,5 +1,6 @@
 $(() => {
   
+  // Takes a tweet object and create its node element
   const createTweetElement = tweet => {
     const $tweet = $('<article>').addClass('tweet')
     $tweet.html(`
@@ -18,42 +19,12 @@ $(() => {
     return $tweet
   }
 
-// Take an array of tweets
+// Render all tweet nodes
 const renderTweets = tweets => {
   tweets.forEach(tweetData => {
     $('#tweets-container').prepend(createTweetElement(tweetData))
   });
 }
-
-// New tweet submission handler
-$('#tweet-composer').on('submit', function(event) {
-  event.preventDefault()
-  const inputText = this.text.value
-
-  // Hide previous error message before submission
-  $('#error-message').hide('fast')
-
-  // Error checking
-  if (inputText.length === 0 || '') {
-    showComposerError({
-      header: 'Empty tweet:', 
-      body: 'please type something.'})
-    return
-  } else if (inputText.length > 140) {
-    showComposerError({
-      header: 'Tweet too long:', 
-      body: 'less than 140 characters please.'})
-    return
-  }
-
-  // All clear, go post!
-  const inputSerial = $(this).serialize()
-  
-  $.post('/tweets', inputSerial, () => {
-    loadTweets()
-    resetComposer()
-  })  
-})
 
 const loadTweets = () => {
   $.get('/tweets', (tweets) => {   
@@ -61,19 +32,19 @@ const loadTweets = () => {
   })
 }
 
+// Cleans up
 const resetComposer = () => {
   $('#tweet-composer-input').val('')
   $('.counter').html(140)
 }
 
-// Escape unsafe html
+// Sanitizes user input strings
 const escapeHtml = str => {
   var div = document.createElement('div');
   div.appendChild(document.createTextNode(str));
   return div.innerHTML;
 }
 
-// show error message 
 const showComposerError = ({header, body}) => {
   console.log(header, body)
   $('.error-message-header').text(header)
@@ -93,12 +64,12 @@ const getDisplayTime = dateObj => {
     return `${yearDiff} years ago`
   } else if (yearDiff === 1) {
     return `1 year ago`
-  } else {
-    if (monthDiff > 1) {
-      return `${monthDiff} months ago`
-    } else if (monthDiff === 1) {
-      return '1 month ago'
-    }
+  }
+
+  if (monthDiff > 1) {
+    return `${monthDiff} months ago`
+  } else if (monthDiff === 1) {
+    return '1 month ago'
   }
 
   if (dateDiff > 1) {
@@ -125,17 +96,47 @@ const getDisplayTime = dateObj => {
     return '1 second ago'
   }
 
-  return 'this month'
-
-
 }
 
-loadTweets()
-$('.new-tweet').toggle()
-$('#error-message').toggle()
-// Nav bar compose button toggle
+// Event handlers
+
+// Submission handler
+$('#tweet-composer').on('submit', function(event) {
+  event.preventDefault()
+  const inputText = this.text.value
+
+  // Hide previous error message before submission
+  $('#error-message').hide('fast')
+
+  // Error checking
+  if (inputText.length === 0 || '') {
+    showComposerError({
+      header: 'Empty tweet:', 
+      body: 'please type something.'})
+    return
+  } else if (inputText.length > 140) {
+    showComposerError({
+      header: 'Tweet too long:', 
+      body: 'less than 140 characters please.'})
+    return
+  }
+
+  // Encode and submit
+  const inputSerial = $(this).serialize()
+  $.post('/tweets', inputSerial, () => {
+    loadTweets()
+    resetComposer()
+  })  
+})
+
+// Button listening
 $('.compose-toggle-button').on('click', () => {
   $('.new-tweet').slideToggle('fast')
   $('#tweet-composer-input').focus()
 })
+
+// Initial content and display of the page
+loadTweets()
+$('.new-tweet').toggle()
+$('#error-message').toggle()
 })
