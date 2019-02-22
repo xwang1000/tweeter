@@ -52,50 +52,47 @@ const showComposerError = ({header, body}) => {
   $('#error-message').slideToggle(400)
 }
 
+const pluralize = (word, n) => n === 1 ? word : word + 's'
+
+const timeAgo = (n, unit) => `${n} ${pluralize(unit, n)} ago`
+
 const getDisplayTime = dateObj => {
   const today = new Date(Date.now())
-  const yearDiff = today.getFullYear() - dateObj.getFullYear()
-  const monthDiff = today.getMonth() - dateObj.getMonth()
-  const dateDiff = today.getDate() - dateObj.getDate()
-  const hourDiff = today.getHours() - dateObj.getHours()
-  const minuteDiff = today.getMinutes() - dateObj.getMinutes()
-  const secondDiff = today.getSeconds() - dateObj.getSeconds()
-  if (yearDiff > 1) {
-    return `${yearDiff} years ago`
-  } else if (yearDiff === 1) {
-    return `1 year ago`
-  }
 
-  if (monthDiff > 1) {
-    return `${monthDiff} months ago`
-  } else if (monthDiff === 1) {
-    return '1 month ago'
-  }
+  const times = [
+    {
+      unit: 'year',
+      getValue: () => today.getFullYear() - dateObj.getFullYear()
+    },
+    {
+      unit: 'month',
+      getValue: () => today.getMonth() - dateObj.getMonth()
+    },
+    {
+      unit: 'day',
+      getValue: () => today.getDate() - dateObj.getDate()
+    },
+    {
+      unit: 'hour',
+      getValue: () => today.getHours() - dateObj.getHours()
+    },
+    {
+      unit: 'minute',
+      getValue: () => today.getMinutes() - dateObj.getMinutes()
+    },
+    {
+      unit: 'second',
+      getValue: () => today.getSeconds() - dateObj.getSeconds()
+    }
+  ]
 
-  if (dateDiff > 1) {
-    return `${dateDiff} days ago`
-  } else if (dateDiff === 1) {
-    return '1 day ago'
+  for(let i = 0; i < times.length; i++) {
+    const {unit, getValue} = times[i]
+    const value = getValue()
+    if (value > 0) {
+      return timeAgo(value, unit)
+    }
   }
-
-  if (hourDiff > 1) {
-    return `${hourDiff} hours ago`
-  } else if (hourDiff === 1) {
-    return '1 hour ago'
-  }
-
-  if (minuteDiff > 1) {
-    return `${minuteDiff} minutes ago`
-  } else if (minuteDiff === 1) {
-    return '1 minute ago'
-  }
-
-  if (secondDiff > 1) {
-    return `${secondDiff} seconds ago`
-  } else if (secondDiff === 1) {
-    return '1 second ago'
-  }
-
 }
 
 // Event handlers
