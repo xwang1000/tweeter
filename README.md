@@ -2,7 +2,9 @@
 A simple single-page AJAX-based Twitter clone.
 
 ## Getting Started
-- install all dependencies (using the `npm install` command).
+- Install all dependencies (using the `npm install` command).
+- Seed your local MongoDB server with the [sample tweets database](), in a 'tweets' collection, in 'tweeter' database. 
+- Start local MongoDB server at mongodb://localhost:27017
 - Start the web server using the `npm start` command. The app will be served at <http://localhost:8080/>.
 
 ## Screenshots
