@@ -23,7 +23,6 @@ main {
   position: relative;
   top: 80px;
   padding: 20px;
-  /* height: 100vh; */
   z-index: 0;
 }
 
@@ -33,12 +32,12 @@ main {
   border-radius: 5px;
   margin: 2em;
   overflow: auto;
-  border: 0.5px solid #eee;
+  border: .5px solid #eee;
   opacity: .8;
 }
 
 .tweet:hover {
-  border: 0.5px solid lightgrey;
+  border: .5px solid lightgrey;
   opacity: 1;
 }
 
@@ -74,14 +73,32 @@ main {
 
 .tweet-body {
   padding: 20px 10px 30px 10px;
-  border-bottom: 0.5px solid #eee;
+  border-bottom: .5px solid #eee;
 }
 
 .tweet footer {
   padding: 10px;
-  font-size: 0.8rem;
+  font-size: .8rem;
+  height: 2.2rem;
 }
 
-.tweet footer p {
+.created-at {
+  float: left;
   margin: 0;
+}
+
+.icon-wrapper {
+  float: right;
+  display: none;
+}
+
+.tweet:hover .icon-wrapper {
+  display: block;
+}
+
+.icon {
+  opacity: .2;
+  width: 16px;
+  margin: 3px;
+  margin-top: 0;
 }
