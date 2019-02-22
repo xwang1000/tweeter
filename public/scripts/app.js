@@ -92,6 +92,10 @@ $(() => {
       }
     ]
 
+    if ((today.getSeconds() - dateObj.getSeconds()) === 0) {
+      return 'just now'
+    }
+
     for(let i = 0; i < times.length; i++) {
       const {unit, getValue} = times[i]
       const value = getValue()
