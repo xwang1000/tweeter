@@ -1,11 +1,8 @@
 html {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
-
 *, *:before, *:after {
-  -webkit-box-sizing: inherit;
-          box-sizing: inherit;
+  box-sizing: inherit;
 }
 
 body {
@@ -54,9 +51,7 @@ main {
 
 .tweet header img {
   width: 60px;
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+  flex: 1;
   float: left;
   border-radius: 5px;
 }
@@ -111,7 +106,5 @@ main {
 .icon:hover {
   opacity: .3;
   cursor: pointer;
-  -webkit-transform: scale(1.1);
-          transform: scale(1.1);
+  transform: scale(1.1);
 }
-/*# sourceMappingURL=layout.css.map */

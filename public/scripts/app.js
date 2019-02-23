@@ -15,9 +15,9 @@ $(() => {
         <footer>
           <p class="created-at">${getDisplayTime(new Date(tweet.created_at))}</p>
           <div class="icon-wrapper"">
-            <img class="icon" src="../images/flag.png" alt="flag icon">
-            <img class="icon" src="../images/retweet.png" alt="retweet icon">
-            <img class="icon" src="../images/like.png" alt="like icon">
+            <img class="icon like" src="../images/flag.png" alt="flag icon">
+            <img class="icon retweet" src="../images/retweet.png" alt="retweet icon">
+            <img class="icon like" src="../images/like.png" alt="like icon">
           </div>
         </footer>
       </article>
@@ -146,4 +146,11 @@ $(() => {
   loadTweets()
   $('.new-tweet').toggle()
   $('#error-message').toggle()
+
+  // Initial like button handler
+  $('#tweets-container').on('click', '.like', function(e) {
+    $likeButton = $(this)
+    console.log($likeButton.hasClass('icon'))
+  })
+
 })
