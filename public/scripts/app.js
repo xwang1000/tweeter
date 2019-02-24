@@ -3,7 +3,7 @@ $(() => {
   // Takes a tweet object and create its node element
   const createTweetElement = tweet => {
     const $tweet = $(`
-      <article class="tweet">
+      <article class="tweet" data-tweet-id=${tweet._id}>
         <header>
           <img class="profile-pic" src=${tweet.user.avatars.small} alt="small avatar">
           <p class="username">${tweet.user.name}</p>
@@ -30,6 +30,7 @@ $(() => {
 
   // Render all tweet nodes
   const renderTweets = tweets => {
+    $('#tweets-container').html('')
     tweets.forEach(tweetData => {
       $('#tweets-container').prepend(createTweetElement(tweetData))
     });
@@ -149,10 +150,30 @@ $(() => {
   $('.new-tweet').toggle()
   $('#error-message').toggle()
 
-  // Initial like button handler
+  // Liking tweets
   $('#tweets-container').on('click', '.like', function(e) {
-    $likeCount = $('.like-count')
-    console.log($likeCount.html())//buggy!
+    // get the current tweet
+    const $tweet = $(this).closest('.tweet')
+    const tweetId = $tweet.data('tweet-id')
+
+    // check if liked
+    if (!$tweet.hasClass('liked')) {
+      $tweet.removeClass('liked')
+      $.ajax({
+        url: '/tweets/' + tweetId + '/likes',
+        type: 'DELETE',
+        success: function(result) {
+          loadTweets()
+        }
+    })
+    } else {
+      $tweet.addClass('liked')
+      $.post('/tweets/' + tweetId + '/likes', () => {
+        loadTweets()
+      })
+    }
+
+    
   })
 
 })

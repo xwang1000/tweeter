@@ -94,37 +94,44 @@ main {
 
 .icon-wrapper {
   float: right;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row;
-  justify-content: right;
-  text-align: right;
-  display: none;
-  opacity: .3;
 }
 
 .tweet:hover .icon-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
 
 .icon {
-  width: 16px;
-  height: 16px;
+  opacity: .2;
+  width: 20px;
+  height: 20px;
   margin: 3px;
-  margin-top: 1px;
+  margin-top: 0;
+}
+
+.icon:hover {
+  opacity: .3;
+  cursor: pointer;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
 }
 
 .like-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
 
 .like-count {
   margin: 0;
-  font-size: 1rem;
+  font-size: 16px;
 }
 
-.icon:hover {
-  cursor: pointer;
-  -webkit-transform: scale(1.1);
-          transform: scale(1.1);
+.tweet.liked .like {
+  border: 1px solid red;
 }
 /*# sourceMappingURL=layout.css.map */
