@@ -15,9 +15,12 @@ $(() => {
         <footer>
           <p class="created-at">${getDisplayTime(new Date(tweet.created_at))}</p>
           <div class="icon-wrapper"">
-            <img class="icon like" src="../images/flag.png" alt="flag icon">
+            <img class="icon flag" src="../images/flag.png" alt="flag icon">
             <img class="icon retweet" src="../images/retweet.png" alt="retweet icon">
-            <img class="icon like" src="../images/like.png" alt="like icon">
+            <div class="like-wrapper">
+              <img class="icon like" src="../images/like.png" alt="like icon">
+              <p class="like-count">${tweet.likes}</p>
+            </div>
           </div>
         </footer>
       </article>
@@ -52,7 +55,6 @@ $(() => {
   }
 
   const showComposerError = ({header, body}) => {
-    console.log(header, body)
     $('.error-message-header').text(header)
     $('.error-message-body').text(body)
     $('#error-message').slideToggle(400)
@@ -149,8 +151,8 @@ $(() => {
 
   // Initial like button handler
   $('#tweets-container').on('click', '.like', function(e) {
-    $likeButton = $(this)
-    console.log($likeButton.hasClass('icon'))
+    $likeCount = $('.like-count')
+    console.log($likeCount.html())//buggy!
   })
 
 })

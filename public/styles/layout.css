@@ -94,22 +94,35 @@ main {
 
 .icon-wrapper {
   float: right;
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  text-align: right;
   display: none;
+  opacity: .3;
 }
 
 .tweet:hover .icon-wrapper {
-  display: block;
+  display: flex;
 }
 
 .icon {
-  opacity: .2;
   width: 16px;
+  height: 16px;
   margin: 3px;
-  margin-top: 0;
+  margin-top: 1px;
+}
+
+.like-wrapper {
+  display: flex;
+}
+
+.like-count {
+  margin: 0;
+  font-size: 1rem;
 }
 
 .icon:hover {
-  opacity: .3;
   cursor: pointer;
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
