@@ -95,17 +95,22 @@ $(() => {
       }
     ]
 
-    if ((today.getSeconds() - dateObj.getSeconds()) === 0) {
+    if (today.getSeconds() - dateObj.getSeconds() === 0) {
       return 'just now'
     }
 
-    for(let i = 0; i < times.length; i++) {
+    for (let i = 0; i < times.length; i++) {
       const {unit, getValue} = times[i]
       const value = getValue()
       if (value > 0) {
         return timeAgo(value, unit)
       }
     }
+  }
+
+  const showMessage = (messageContent) => {
+    $('.announcement').text(messageContent)
+    $('.announcement').slideToggle('ease')
   }
 
   // Event handlers
@@ -156,12 +161,13 @@ $(() => {
     const password_hash   = 'test password'
 
     $.post('/login', {currentUsername, password_hash}, (res) => {
-
-      // if successful, change login to logout
-      console.log(res)
+      showMessage(res)
     })
   })
 
+  $('.announcement').click(function() {
+    $(this).slideToggle('ease')
+  })
 
   // Liking tweets
   $('#tweets-container').on('click', '.like', function(e) {
@@ -185,7 +191,6 @@ $(() => {
         loadTweets()
       })
     }
-
     
   })
 

@@ -1,4 +1,4 @@
-nav {
+.nav-bar-content {
   background-color: #00a087;
   color: #e8fdff;
   height: 80px;
@@ -37,5 +37,21 @@ nav {
 #nav-bar .nav-button {
   cursor: pointer;
   opacity: 1;
+}
+
+.announcement {
+  z-index: 2;
+  position: relative;
+  top: 80px;
+  padding: 10px;
+  text-align: center;
+  display: none;
+  font-weight: 500;
+  font-size: 1.2rem;
+  background: lightgreen;
+}
+
+.announcement:hover {
+  cursor: pointer;
 }
 /*# sourceMappingURL=nav.css.map */
