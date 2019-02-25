@@ -9,5 +9,6 @@ module.exports = function(DataHelpers) {
       res.json(users)
     })
   })
+
   return usersRoutes
 }

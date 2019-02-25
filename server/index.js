@@ -16,6 +16,16 @@ app.use(cookieSession({
 }))
 app.use(morgan('dev'))
 
+const isAuthenticated = (req, res, next) => {
+  if (req.session.user) {
+    next()
+  } else {
+    res.redirect('/')
+  }
+}
+
+app.use('/users', isAuthenticated)
+
 // Get database from MongoDB and boot the routes
 const {MongoClient} = require('mongodb')
 const MONGODB_URI = 'mongodb://localhost:27017/tweeter'
@@ -38,9 +48,17 @@ MongoClient.connect(MONGODB_URI, (err, db) => {
   
   app.post('/login', (req, res) => {
     const {currentUsername, password_hash} = req.body
-    DataHelpers.getUsers(function(users) {
-      console.log(users)
-      res.send(users)
+
+    DataHelpers.getUser(currentUsername, function(err, user) {
+      if (err) {
+        console.error(err)
+      } else if (password_hash === user['password_hash']) {
+        // mock pw authentication
+        req.session.user = user['_id']
+        res.status(201).send('login successful')
+      } else {
+        res.status(403).send('login error')
+      }
     })
   })
 

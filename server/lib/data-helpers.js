@@ -33,7 +33,14 @@ module.exports = function makeDataHelpers(db) {
       db.collection('users').find().toArray((err, usersArray) => {
         callback(err, usersArray)
       })
-    }
+    },
 
+    getUser: function(username, callback) {
+      db.collection('users').findOne(
+        {'username': username}, 
+        function(err, record) {
+          callback(err, record)
+      })
+    }
   }
 }

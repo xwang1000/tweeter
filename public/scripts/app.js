@@ -152,14 +152,16 @@ $(() => {
 
   // Login button
   $('.login-button').on('click', function() {
-    const currentUsername = 'sarah'
-    const password_hash   = 'test'
+    const currentUsername = 'xw'
+    const password_hash   = 'test password'
 
     $.post('/login', {currentUsername, password_hash}, (res) => {
-      // register user to session
+
+      // if successful, change login to logout
       console.log(res)
     })
   })
+
 
   // Liking tweets
   $('#tweets-container').on('click', '.like', function(e) {
