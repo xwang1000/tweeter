@@ -27,6 +27,12 @@ module.exports = function makeDataHelpers(db) {
         {$inc: {'likes': increment}}, 
         err => callback(err)
       )
+    },
+
+    getUsers: function(callback) {
+      db.collection('users').find().toArray((err, usersArray) => {
+        callback(err, usersArray)
+      })
     }
 
   }

@@ -150,6 +150,17 @@ $(() => {
   $('.new-tweet').toggle()
   $('#error-message').toggle()
 
+  // Login button
+  $('.login-button').on('click', function() {
+    const currentUsername = 'sarah'
+    const password_hash   = 'test'
+
+    $.post('/login', {currentUsername, password_hash}, (res) => {
+      // register user to session
+      console.log(res)
+    })
+  })
+
   // Liking tweets
   $('#tweets-container').on('click', '.like', function(e) {
     // get the current tweet

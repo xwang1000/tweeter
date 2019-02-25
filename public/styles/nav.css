@@ -23,7 +23,7 @@ nav {
   line-height: 80px;
 }
 
-#nav-bar .compose-toggle-button {
+#nav-bar .nav-button {
   border: 0.5px solid grey;
   border-radius: 10px;
   color: #00a087;
@@ -34,7 +34,8 @@ nav {
   opacity: .8;
 }
 
-#nav-bar .compose-toggle-button:hover {
+#nav-bar .nav-button {
   cursor: pointer;
   opacity: 1;
 }
+/*# sourceMappingURL=nav.css.map */
